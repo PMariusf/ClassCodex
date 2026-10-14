@@ -24,9 +24,11 @@ The current working implementation now covers all three Rogue specializations:
 - Raid / Mythic+ recommended-build selector
 - Exact active-loadout comparison against the selected recommendation
 - Recommended build import codes with click-to-select fields
+- Ability-icon rows for Opener, Single Target and AoE priorities
+- Ability tooltips on rotation rows when the Retail spell API resolves the spell
 - Talent rows with spell icons and ranks
 - Spell tooltip on talent hover when a spell ID is available
-- Scrollable content area for long talent lists
+- Scrollable content area for long pages
 - Draggable in-game window
 - Overview
 - Opener
@@ -92,11 +94,17 @@ Current profiles include:
 
 Recommended build information should be reviewed whenever Blizzard tuning or talent changes land.
 
+## Rotation presentation
+
+Rotation entries can now carry a Retail spell name as metadata. Class Codex resolves the spell at runtime through `C_Spell.GetSpellInfo`, displays its icon, and provides a normal WoW spell tooltip on hover. If a spell cannot be resolved, the guide text still renders with a question-mark icon instead of failing.
+
+Subtlety rotation notes were refreshed for the current 12.x design; removed abilities such as Symbols of Death are no longer referenced.
+
 ## Development plan
 
-1. Test all three Rogue specs, the active Talents / Hero Talents reader and exact build comparison in Retail.
+1. Test all three Rogue specs, the active Talents / Hero Talents reader, exact build comparison and ability-icon rows in Retail.
 2. Improve talent sorting/grouping and add richer WoW-style UI components.
-3. Add clearer spell/ability presentation to rotation pages.
+3. Add cooldown/resource callouts and more compact visual rotation cards.
 4. Use Rogue as the template for the remaining classes and specs.
 5. Add optional additional content profiles such as Delves and alternative raid encounters.
 
