@@ -97,7 +97,7 @@ function CC:InitializeUI()
     scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -42, 26)
 
     local content = CreateFrame("Frame", nil, scrollFrame)
-    content:SetSize(560, 1800)
+    content:SetSize(560, 4000)
     content.children = {}
     scrollFrame:SetScrollChild(content)
 
