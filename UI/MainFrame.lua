@@ -92,11 +92,16 @@ function CC:InitializeUI()
     sidebar:SetBackdrop({ bgFile = "Interface\\Buttons\\WHITE8X8" })
     sidebar:SetBackdropColor(0.045, 0.045, 0.055, 1)
 
-    local content = CreateFrame("Frame", nil, frame)
-    content:SetPoint("TOPLEFT", sidebar, "TOPRIGHT", 26, -24)
-    content:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -26, 26)
-    content.children = {}
+    local scrollFrame = CreateFrame("ScrollFrame", "ClassCodexScrollFrame", frame, "UIPanelScrollFrameTemplate")
+    scrollFrame:SetPoint("TOPLEFT", sidebar, "TOPRIGHT", 26, -24)
+    scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -42, 26)
 
+    local content = CreateFrame("Frame", nil, scrollFrame)
+    content:SetSize(560, 1800)
+    content.children = {}
+    scrollFrame:SetScrollChild(content)
+
+    frame.scrollFrame = scrollFrame
     frame.content = content
     frame.tabButtons = {}
     frame.currentTab = "Overview"
@@ -115,6 +120,9 @@ function CC:InitializeUI()
         button.tabName = tabName
         button:SetScript("OnClick", function(self)
             frame.currentTab = self.tabName
+            if frame.scrollFrame then
+                frame.scrollFrame:SetVerticalScroll(0)
+            end
             CC:Render()
         end)
 
