@@ -2,9 +2,14 @@
 ## Title: Class Codex
 ## Notes: In-game class and specialization reference for World of Warcraft Retail.
 ## Author: Marius
-## Version: 0.2.0
+## Version: 0.3.0
 ## SavedVariables: ClassCodexDB
 
 Core.lua
+Core/Player.lua
+Core/Database.lua
+
 Data/Rogue/Subtlety.lua
-UI.lua
+
+UI/MainFrame.lua
+UI/Pages.lua
