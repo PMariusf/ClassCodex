@@ -6,7 +6,11 @@ Class Codex is an in-game World of Warcraft Retail reference addon for class, sp
 
 `0.3.0-dev`
 
-The current working implementation focuses on **Rogue / Subtlety** as the first complete spec template.
+The current working implementation now covers all three Rogue specializations:
+
+- Assassination
+- Outlaw
+- Subtlety
 
 ## Features
 
@@ -20,7 +24,6 @@ The current working implementation focuses on **Rogue / Subtlety** as the first 
 - Raid / Mythic+ recommended-build selector
 - Exact active-loadout comparison against the selected recommendation
 - Recommended build import codes with click-to-select fields
-- Mythic+ alternative build support
 - Talent rows with spell icons and ranks
 - Spell tooltip on talent hover when a spell ID is available
 - Scrollable content area for long talent lists
@@ -49,6 +52,8 @@ ClassCodex/
 │   └── Talents.lua
 ├── Data/
 │   └── Rogue/
+│       ├── Assassination.lua
+│       ├── Outlaw.lua
 │       └── Subtlety.lua
 └── UI/
     ├── MainFrame.lua
@@ -77,18 +82,22 @@ Reset the saved window position with:
 
 ## Recommended build data
 
-The current Subtlety template includes Raid and Mythic+ recommendations for Patch 12.1.5 / Midnight Season 2. The addon compares the full active talent export string against the chosen recommendation, so an exact-match result represents the complete class/spec/Hero Talent loadout rather than a partial name-based comparison.
+Rogue recommendations are patch-versioned for Patch 12.1.5 / Midnight Season 2. The addon compares the full active talent export string against the chosen recommendation, so an exact-match result represents the complete class/spec/Hero Talent loadout rather than a partial name-based comparison.
 
-The primary profiles currently use Deathstalker for Raid and high-key Mythic+. Trickster is included as a Mythic+ alternative for a more burst-oriented weekly-key profile.
+Current profiles include:
 
-Recommended build information is patch-versioned and should be reviewed whenever Blizzard tuning or talent changes land.
+- Assassination: Fatebound Raid and Mythic+
+- Outlaw: Trickster Raid/Single Target and Mythic+/AoE
+- Subtlety: Deathstalker Raid and high-key Mythic+, with a Trickster Mythic+ alternative
+
+Recommended build information should be reviewed whenever Blizzard tuning or talent changes land.
 
 ## Development plan
 
-1. Test the active Talents / Hero Talents reader and exact build comparison in Retail.
+1. Test all three Rogue specs, the active Talents / Hero Talents reader and exact build comparison in Retail.
 2. Improve talent sorting/grouping and add richer WoW-style UI components.
-3. Add Assassination and Outlaw.
-4. Use Rogue as the template for all remaining classes and specs.
+3. Add clearer spell/ability presentation to rotation pages.
+4. Use Rogue as the template for the remaining classes and specs.
 5. Add optional additional content profiles such as Delves and alternative raid encounters.
 
 ## Offline development note
