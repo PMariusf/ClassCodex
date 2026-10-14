@@ -8,6 +8,7 @@
 Core.lua
 Core/Player.lua
 Core/Database.lua
+Core/Talents.lua
 
 Data/Rogue/Subtlety.lua
 
