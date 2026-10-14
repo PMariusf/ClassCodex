@@ -20,19 +20,19 @@ CC.data.ROGUE[259] = {
     },
 
     singleTarget = {
-        "Keep your important bleeds and poison-related effects active on the primary target.",
-        "Avoid capping Energy and Combo Points, but do not spend so aggressively that you starve your next setup window.",
-        "Use finishers at high Combo Points whenever practical.",
-        "Pool resources ahead of planned burst and cooldown windows.",
+        "Keep Rupture and Garrote active on the primary target.",
+        "Chain Envenom casts cleanly and refresh late rather than letting the buff fall unnecessarily.",
+        "Avoid capping Energy and Combo Points while preserving enough resources for upcoming cooldown windows.",
+        "Use Kingsbane and Deathmark on cooldown when the target will survive their full value.",
         "Prefer target uptime and clean damage-over-time maintenance over frantic button usage.",
     },
 
     aoe = {
         "Spread your important bleeds across targets that will live long enough to justify the setup time.",
-        "Use Fan of Knives-style multi-target generation efficiently without overcapping Combo Points.",
+        "Use Crimson Tempest to establish or spread bleed pressure before settling into your AoE builder flow.",
+        "Use Fan of Knives efficiently without overcapping Combo Points.",
         "Prioritize the dangerous target while maintaining useful damage-over-time coverage on the pack.",
         "Do not spend globals applying long-duration effects to enemies that are about to die.",
-        "Pool resources before important priority-target or pack burst windows.",
     },
 
     stats = {
@@ -44,6 +44,29 @@ CC.data.ROGUE[259] = {
             "Versatility",
         },
         note = "Patch 12.1.5 guidance: Assassination generally wants Crit and Haste, with Mastery close behind and Versatility typically weakest. There is no fixed Haste breakpoint; sim your character for final gearing decisions.",
+    },
+
+    recommendedBuilds = {
+        raid = {
+            key = "raid",
+            label = "Raid",
+            name = "Fatebound — Raid",
+            heroTree = "Fatebound",
+            patch = "12.1.5",
+            source = "Icy Veins — Beginner Raid build",
+            importString = "CMQAAAAAAAAAAAAAAAAAAAAAAYmlZmFDGAAAAAY2GsNDAAAAAIbzMzMzMjxyMzMbzsMzMPwYMzYMmZGjBYzsMwAWALDTghFDmZAGjB",
+            note = "Balanced Fatebound raid setup with strong single-target plus useful cleave/AoE coverage.",
+        },
+        mythicplus = {
+            key = "mythicplus",
+            label = "Mythic+",
+            name = "Fatebound — Mythic+",
+            heroTree = "Fatebound",
+            patch = "12.1.5",
+            source = "Icy Veins — Beginner Mythic+ build",
+            importString = "CMQAAAAAAAAAAAAAAAAAAAAAAYmlZmFDGAAAAAY2GsNDAAAAAIbzMzMzMjxyMzMbzsMzMPgZMzYMMzYMAbmlBGwCYZYCMsYwMDwYMA",
+            note = "Mythic+ setup focused on strong priority-target damage while retaining useful AoE pressure.",
+        },
     },
 
     defensives = {
@@ -59,7 +82,7 @@ CC.data.ROGUE[259] = {
         "Sap — pre-combat crowd control.",
         "Blind — long crowd control.",
         "Cheap Shot / Kidney Shot — stuns and control.",
-        "Shiv — valuable poison/enrage-related utility depending on encounter and talents.",
+        "Shiv — poison/enrage-related utility; in current 12.1.x PvE it is primarily utility rather than a core DPS button.",
         "Distract — useful pre-combat positioning and patrol control.",
     },
 
