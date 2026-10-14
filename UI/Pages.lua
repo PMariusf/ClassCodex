@@ -22,19 +22,70 @@ local function SectionTitle(content, text)
     return title
 end
 
-local function AddLine(content, anchor, text, index)
-    local row = Track(content, CreateFrame("Frame", nil, content))
-    row:SetSize(560, 32)
+local function ResolveAbility(entry)
+    if type(entry) ~= "table" or not entry.spell then
+        return nil
+    end
+
+    if C_Spell and C_Spell.GetSpellInfo then
+        return C_Spell.GetSpellInfo(entry.spell)
+    end
+
+    return nil
+end
+
+local function AddLine(content, anchor, entry, index)
+    local isAbility = type(entry) == "table"
+    local text = isAbility and (entry.text or entry.spell or "") or entry
+    local spellInfo = ResolveAbility(entry)
+    local rowHeight = isAbility and 48 or 32
+
+    local row = Track(content, CreateFrame("Frame", nil, content, "BackdropTemplate"))
+    row:SetSize(560, rowHeight)
     row:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", 0, -7)
 
-    local bullet = CC.CreateText(row, 13, "GameFontHighlight")
-    bullet:SetPoint("TOPLEFT", 0, -2)
-    bullet:SetText(index and tostring(index) or "•")
-    bullet:SetTextColor(0.83, 0.68, 0.22)
+    if isAbility then
+        row:SetBackdrop({
+            bgFile = "Interface\\Buttons\\WHITE8X8",
+            edgeFile = "Interface\\Buttons\\WHITE8X8",
+            edgeSize = 1,
+        })
+        row:SetBackdropColor(0.048, 0.048, 0.058, 0.92)
+        row:SetBackdropBorderColor(0.14, 0.14, 0.17, 1)
+    end
+
+    local number = CC.CreateText(row, 13, "GameFontHighlight")
+    number:SetPoint("LEFT", 6, 0)
+    number:SetWidth(22)
+    number:SetText(index and tostring(index) or "•")
+    number:SetTextColor(0.83, 0.68, 0.22)
+
+    local leftAnchor = number
+    if isAbility then
+        local icon = row:CreateTexture(nil, "ARTWORK")
+        icon:SetSize(34, 34)
+        icon:SetPoint("LEFT", number, "RIGHT", 4, 0)
+        icon:SetTexture((spellInfo and spellInfo.iconID) or "Interface\\Icons\\INV_Misc_QuestionMark")
+        leftAnchor = icon
+
+        if spellInfo and spellInfo.spellID then
+            row:EnableMouse(true)
+            row:SetScript("OnEnter", function(self)
+                if GameTooltip and GameTooltip.SetOwner and GameTooltip.SetSpellByID then
+                    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                    GameTooltip:SetSpellByID(spellInfo.spellID)
+                    GameTooltip:Show()
+                end
+            end)
+            row:SetScript("OnLeave", function()
+                if GameTooltip then GameTooltip:Hide() end
+            end)
+        end
+    end
 
     local label = CC.CreateText(row, 14, "GameFontHighlight")
-    label:SetPoint("TOPLEFT", bullet, "TOPRIGHT", 10, 0)
-    label:SetPoint("RIGHT", row, "RIGHT", 0, 0)
+    label:SetPoint("LEFT", leftAnchor, "RIGHT", 10, 0)
+    label:SetPoint("RIGHT", row, "RIGHT", -8, 0)
     label:SetText(text)
     label:SetTextColor(0.92, 0.92, 0.92)
     label:SetWordWrap(true)
@@ -44,8 +95,8 @@ end
 
 local function DrawList(content, titleText, entries)
     local anchor = SectionTitle(content, titleText)
-    for i, text in ipairs(entries or {}) do
-        anchor = AddLine(content, anchor, text, i)
+    for i, entry in ipairs(entries or {}) do
+        anchor = AddLine(content, anchor, entry, i)
     end
 end
 
@@ -251,7 +302,7 @@ local function DrawRecommendedBuild(content, guide, snapshot)
         CC:Render()
     end)
 
-    local mythicButton = CreateModeButton(content, raidButton, "Mythic+", "mythicplus", mode)
+    CreateModeButton(content, raidButton, "Mythic+", "mythicplus", mode)
 
     local profile = builds[mode]
     local profileName = Track(content, CC.CreateText(content, 16, "GameFontNormal"))
@@ -429,7 +480,7 @@ function CC:Render()
             "Guide not added yet",
             "Class Codex detected " .. (info.className or "your class")
             .. (info.specName and (" / " .. info.specName) or "")
-            .. ", but this development build currently contains complete data only for Rogue / Subtlety."
+            .. ", but this development build does not contain a guide for this spec yet."
         )
         return
     end
