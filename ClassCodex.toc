@@ -1,0 +1,10 @@
+## Interface: 120105
+## Title: Class Codex
+## Notes: In-game class and specialization reference for World of Warcraft Retail.
+## Author: Marius
+## Version: 0.2.0
+## SavedVariables: ClassCodexDB
+
+Core.lua
+Data/Rogue/Subtlety.lua
+UI.lua
