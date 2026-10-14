@@ -12,27 +12,30 @@ CC.data.ROGUE[260] = {
     },
 
     opener = {
-        "Enter combat with your core maintenance buffs prepared when possible.",
-        "Activate Adrenaline Rush early enough to gain full value from the opening window.",
-        "Build and spend Combo Points quickly to start Restless Blades cooldown reduction.",
-        "Use Between the Eyes and other finishers without wasting Combo Points.",
-        "Keep the rotation flowing instead of pooling excessively unless a mechanic requires it.",
+        { spell = "Adrenaline Rush", text = "Use Adrenaline Rush immediately before or at the pull, ideally at low Combo Points." },
+        { spell = "Roll the Bones", text = "Apply Roll the Bones before the pull when possible." },
+        { spell = "Slice and Dice", text = "Have Slice and Dice active as the fight begins." },
+        { spell = "Between the Eyes", text = "Use Between the Eyes on cooldown at 6+ Combo Points." },
+        { spell = "Preparation", text = "Use Preparation to reset Adrenaline Rush, Between the Eyes and other key cooldowns when talented." },
+        { spell = "Dispatch", text = "Use Dispatch as the fallback finisher when no higher-priority finisher is ready." },
     },
 
     singleTarget = {
-        "Keep your core maintenance buffs active and avoid unnecessary downtime.",
-        "Spend Combo Points frequently to benefit from Restless Blades cooldown reduction.",
-        "Avoid capping Energy and Combo Points.",
-        "Use finishers at the correct Combo Point threshold for your active talents and Hero Talent setup.",
-        "Maintain high uptime: Outlaw gains value from sustained execution rather than long idle pooling periods.",
+        { spell = "Adrenaline Rush", text = "Use Adrenaline Rush on cooldown at low Combo Points." },
+        { spell = "Between the Eyes", text = "Use Between the Eyes on cooldown with 6+ Combo Points." },
+        { spell = "Killing Spree", text = "Use Killing Spree on cooldown with high Combo Points when talented and safe." },
+        { spell = "Dispatch", text = "Use Dispatch as your main finisher when other finishers are unavailable." },
+        { spell = "Pistol Shot", text = "Use Pistol Shot to consume Opportunity stacks efficiently." },
+        { spell = "Sinister Strike", text = "Use Sinister Strike as your default Combo Point builder." },
     },
 
     aoe = {
-        "Maintain Blade Flurry whenever cleave targets are present and will live long enough.",
-        "Continue the normal Combo Point builder/finisher flow while cleaving through Blade Flurry.",
-        "Avoid overpaying for Blade Flurry on very short-lived or low-target situations.",
-        "Use priority-target finishers while letting cleave handle surrounding enemies.",
-        "Keep cooldown reduction rolling by spending Combo Points consistently.",
+        { spell = "Blade Flurry", text = "Maintain Blade Flurry whenever cleave targets are present and will live long enough." },
+        { spell = "Between the Eyes", text = "Keep using Between the Eyes on the priority target at high Combo Points." },
+        { spell = "Dispatch", text = "Continue your normal finisher flow while Blade Flurry cleaves surrounding targets." },
+        { spell = "Pistol Shot", text = "Use Opportunity-enhanced Pistol Shot efficiently without overcapping Combo Points." },
+        { spell = "Sinister Strike", text = "Use Sinister Strike to maintain your normal builder/finisher rhythm." },
+        { spell = "Adrenaline Rush", text = "Keep Adrenaline Rush cycling to sustain resource flow and cooldown reduction." },
     },
 
     stats = {
