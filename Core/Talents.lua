@@ -22,6 +22,41 @@ local function GetSpellDisplay(definitionInfo)
     }
 end
 
+function CC:GetActiveTalentImportString()
+    if not C_ClassTalents or not C_ClassTalents.GetActiveConfigID then
+        return nil, "Talent API unavailable"
+    end
+
+    if not C_Traits or not C_Traits.GenerateImportString then
+        return nil, "Talent export API unavailable"
+    end
+
+    local configID = C_ClassTalents.GetActiveConfigID()
+    if not configID then
+        return nil, "No active talent configuration"
+    end
+
+    local importString = C_Traits.GenerateImportString(configID)
+    if not importString or importString == "" then
+        return nil, "Active loadout could not be exported yet"
+    end
+
+    return importString
+end
+
+function CC:IsRecommendedBuildMatch(recommendedImportString)
+    if not recommendedImportString or recommendedImportString == "" then
+        return false, "No recommended build string"
+    end
+
+    local activeImportString, err = self:GetActiveTalentImportString()
+    if not activeImportString then
+        return false, err
+    end
+
+    return activeImportString == recommendedImportString
+end
+
 function CC:GetActiveTalentSnapshot()
     if not C_Traits or not C_ClassTalents or not C_ClassTalents.GetActiveConfigID then
         return nil, "Talent API unavailable"
@@ -44,6 +79,10 @@ function CC:GetActiveTalentSnapshot()
         heroTalents = {},
         heroTree = nil,
     }
+
+    if C_Traits.GenerateImportString then
+        snapshot.importString = C_Traits.GenerateImportString(configID)
+    end
 
     local activeHeroSpecID
     if C_ClassTalents.GetActiveHeroTalentSpec then
