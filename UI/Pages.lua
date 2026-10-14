@@ -111,6 +111,113 @@ local function DrawStats(content, guide)
     end
 end
 
+local function DrawTalentRow(content, anchor, talent)
+    local row = Track(content, CreateFrame("Frame", nil, content, "BackdropTemplate"))
+    row:SetSize(560, 46)
+    row:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", 0, -7)
+    row:SetBackdrop({
+        bgFile = "Interface\\Buttons\\WHITE8X8",
+        edgeFile = "Interface\\Buttons\\WHITE8X8",
+        edgeSize = 1,
+    })
+    row:SetBackdropColor(0.055, 0.055, 0.065, 0.95)
+    row:SetBackdropBorderColor(0.16, 0.16, 0.19, 1)
+
+    local icon = row:CreateTexture(nil, "ARTWORK")
+    icon:SetSize(34, 34)
+    icon:SetPoint("LEFT", 6, 0)
+    if talent.icon then
+        icon:SetTexture(talent.icon)
+    else
+        icon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
+    end
+
+    local name = CC.CreateText(row, 14, "GameFontHighlight")
+    name:SetPoint("TOPLEFT", icon, "TOPRIGHT", 10, -3)
+    name:SetText(talent.name or "Unknown talent")
+    name:SetTextColor(0.95, 0.95, 0.95)
+
+    local rank = CC.CreateText(row, 12, "GameFontDisable")
+    rank:SetPoint("BOTTOMLEFT", icon, "BOTTOMRIGHT", 10, 3)
+    rank:SetText("Rank " .. tostring(talent.rank or 1) .. " / " .. tostring(talent.maxRanks or 1))
+
+    if talent.spellID then
+        row:EnableMouse(true)
+        row:SetScript("OnEnter", function(self)
+            if GameTooltip and GameTooltip.SetOwner and GameTooltip.SetSpellByID then
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                GameTooltip:SetSpellByID(talent.spellID)
+                GameTooltip:Show()
+            end
+        end)
+        row:SetScript("OnLeave", function()
+            if GameTooltip then GameTooltip:Hide() end
+        end)
+    end
+
+    return row
+end
+
+local function DrawTalentCollection(content, titleText, talents, subtitle)
+    local title = SectionTitle(content, titleText)
+    local anchor = title
+
+    if subtitle then
+        local sub = Track(content, CC.CreateText(content, 12, "GameFontDisable"))
+        sub:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -10)
+        sub:SetWidth(560)
+        sub:SetText(subtitle)
+        anchor = sub
+    end
+
+    if not talents or #talents == 0 then
+        local empty = Track(content, CC.CreateText(content, 14, "GameFontHighlight"))
+        empty:SetPoint("TOPLEFT", anchor, "BOTTOMLEFT", 0, -14)
+        empty:SetWidth(560)
+        empty:SetText("No selected talents could be read from the active loadout.")
+        empty:SetTextColor(0.72, 0.72, 0.76)
+        return
+    end
+
+    for _, talent in ipairs(talents) do
+        anchor = DrawTalentRow(content, anchor, talent)
+    end
+end
+
+local function DrawTalents(content)
+    local snapshot, err = CC:GetActiveTalentSnapshot()
+    if not snapshot then
+        local title = SectionTitle(content, "Talents")
+        local text = Track(content, CC.CreateText(content, 14, "GameFontHighlight"))
+        text:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -14)
+        text:SetText(err or "Unable to read the current talent loadout.")
+        return
+    end
+
+    local subtitle = "Active loadout: " .. (snapshot.loadoutName or "Unnamed loadout")
+        .. "  •  Config " .. tostring(snapshot.configID)
+    DrawTalentCollection(content, "Selected Talents", snapshot.talents, subtitle)
+end
+
+local function DrawHeroTalents(content)
+    local snapshot, err = CC:GetActiveTalentSnapshot()
+    if not snapshot then
+        local title = SectionTitle(content, "Hero Talents")
+        local text = Track(content, CC.CreateText(content, 14, "GameFontHighlight"))
+        text:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -14)
+        text:SetText(err or "Unable to read the current Hero Talent tree.")
+        return
+    end
+
+    local treeName = snapshot.heroTree and snapshot.heroTree.name or "No active Hero Talent tree"
+    local subtitle = treeName
+    if snapshot.heroTree and snapshot.heroTree.description and snapshot.heroTree.description ~= "" then
+        subtitle = subtitle .. " — " .. snapshot.heroTree.description
+    end
+
+    DrawTalentCollection(content, "Hero Talents", snapshot.heroTalents, subtitle)
+end
+
 local function DrawMacros(content, guide)
     local anchor = SectionTitle(content, "Macros")
 
@@ -201,9 +308,9 @@ function CC:Render()
     elseif tab == "Stats" then
         DrawStats(frame.content, guide)
     elseif tab == "Talents" then
-        DrawPlaceholder(frame.content, "Talents", "Talent loadout display and comparison will be added next.")
+        DrawTalents(frame.content)
     elseif tab == "Hero Talents" then
-        DrawPlaceholder(frame.content, "Hero Talents", "The active Hero Talent tree is already detected. The visual tree and recommended build will be added next.")
+        DrawHeroTalents(frame.content)
     elseif tab == "Defensives" then
         DrawList(frame.content, "Defensives", guide.defensives)
     elseif tab == "Utility" then
