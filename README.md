@@ -79,6 +79,8 @@ Reset the saved window position with:
 
 The current Subtlety template includes Raid and Mythic+ recommendations for Patch 12.1.5 / Midnight Season 2. The addon compares the full active talent export string against the chosen recommendation, so an exact-match result represents the complete class/spec/Hero Talent loadout rather than a partial name-based comparison.
 
+The primary profiles currently use Deathstalker for Raid and high-key Mythic+. Trickster is included as a Mythic+ alternative for a more burst-oriented weekly-key profile.
+
 Recommended build information is patch-versioned and should be reviewed whenever Blizzard tuning or talent changes land.
 
 ## Development plan
