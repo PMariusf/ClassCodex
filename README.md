@@ -79,6 +79,10 @@ Reset the saved window position with:
 5. Use Rogue as the template for all remaining classes and specs.
 6. Add optional content-mode profiles such as Mythic+, Raid and Open World.
 
+## Offline development note
+
+The addon can be fully developed and reviewed without a local WoW installation, but runtime API behavior and final UI appearance still need an in-game verification pass before release.
+
 ## Important
 
 Class Codex is intended as a reference and learning addon. Recommended stats and rotations should be versioned by patch and treated as guidance rather than a replacement for character-specific simulation.
