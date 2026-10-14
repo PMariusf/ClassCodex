@@ -10,6 +10,8 @@ Core/Player.lua
 Core/Database.lua
 Core/Talents.lua
 
+Data/Rogue/Assassination.lua
+Data/Rogue/Outlaw.lua
 Data/Rogue/Subtlety.lua
 
 UI/MainFrame.lua
