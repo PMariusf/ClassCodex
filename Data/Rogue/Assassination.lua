@@ -12,27 +12,31 @@ CC.data.ROGUE[259] = {
     },
 
     opener = {
-        "Enter from Stealth and establish your core bleed/poison effects immediately.",
-        "Avoid wasting Combo Points while setting up the first finisher cycle.",
-        "Pool Energy before major cooldown windows instead of entering them nearly empty.",
-        "Align your major offensive cooldowns only when the target will live long enough for the full effect.",
-        "Refresh important damage-over-time effects before they expire, but avoid clipping large portions of their duration unnecessarily.",
+        { spell = "Garrote", text = "Open from Stealth with Garrote." },
+        { spell = "Mutilate", text = "Build to 5+ Combo Points with Mutilate." },
+        { spell = "Rupture", text = "Apply Rupture at 5+ Combo Points." },
+        { spell = "Garrote", text = "Refresh Garrote during the Improved Garrote window." },
+        { spell = "Envenom", text = "Build again and cast Envenom at high Combo Points." },
+        { spell = "Deathmark", text = "Use Deathmark once your core bleeds are established." },
+        { spell = "Kingsbane", text = "Follow with Kingsbane and continue the Envenom/Mutilate cycle." },
     },
 
     singleTarget = {
-        "Keep Rupture and Garrote active on the primary target.",
-        "Chain Envenom casts cleanly and refresh late rather than letting the buff fall unnecessarily.",
-        "Avoid capping Energy and Combo Points while preserving enough resources for upcoming cooldown windows.",
-        "Use Kingsbane and Deathmark on cooldown when the target will survive their full value.",
-        "Prefer target uptime and clean damage-over-time maintenance over frantic button usage.",
+        { spell = "Rupture", text = "Keep Rupture active on the primary target." },
+        { spell = "Garrote", text = "Keep Garrote active and refresh intelligently." },
+        { spell = "Envenom", text = "Chain Envenom cleanly at high Combo Points and avoid waste." },
+        { spell = "Kingsbane", text = "Use Kingsbane on cooldown when the target will live for the full effect." },
+        { spell = "Deathmark", text = "Use Deathmark on cooldown with your core damage-over-time effects established." },
+        { spell = "Mutilate", text = "Use Mutilate as your primary single-target Combo Point builder." },
     },
 
     aoe = {
-        "Spread your important bleeds across targets that will live long enough to justify the setup time.",
-        "Use Crimson Tempest to establish or spread bleed pressure before settling into your AoE builder flow.",
-        "Use Fan of Knives efficiently without overcapping Combo Points.",
-        "Prioritize the dangerous target while maintaining useful damage-over-time coverage on the pack.",
-        "Do not spend globals applying long-duration effects to enemies that are about to die.",
+        { spell = "Garrote", text = "Spread Garrote to targets that will live long enough to justify it." },
+        { spell = "Rupture", text = "Maintain Rupture on durable priority targets." },
+        { spell = "Crimson Tempest", text = "Use Crimson Tempest for multi-target bleed pressure when appropriate." },
+        { spell = "Fan of Knives", text = "Use Fan of Knives to build Combo Points efficiently on packs." },
+        { spell = "Envenom", text = "Use Envenom for priority-target pressure and poison amplification." },
+        { spell = "Deathmark", text = "Commit Deathmark to important priority targets or high-value pack windows." },
     },
 
     stats = {
