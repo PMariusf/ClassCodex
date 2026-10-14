@@ -38,11 +38,39 @@ CC.data.ROGUE[261] = {
         priority = {
             "Item Level / Agility",
             "Mastery",
-            "Haste — aim roughly for the current recommended breakpoint/range",
+            "Haste — aim roughly for 700–1100 rating in Season 2",
             "Versatility",
             "Critical Strike",
         },
         note = "General Patch 12.1.5 guidance. Your best upgrade can vary by build and gear, so simming remains more accurate than following a fixed stat order.",
+    },
+
+    recommendedBuilds = {
+        raid = {
+            key = "raid",
+            label = "Raid",
+            name = "Deathstalker — Raid / Single Target",
+            heroTree = "Deathstalker",
+            patch = "12.1.5",
+            source = "Icy Veins / current Midnight Season 2 guidance",
+            importString = "CUQAAAAAAAAAAAAAAAAAAAAAAAgx2MAAAAAwsMGLTMbbjxMDDzMzMzw8AbzYGbbzMzMzMjBjZ2GAAAAGMmFzyADYBsMMBmFMDzMAzYA",
+            note = "Recommended for raid and single-target. Current 12.1.5 guidance continues to favor Deathstalker for most raid encounters.",
+        },
+        mythicplus = {
+            key = "mythicplus",
+            label = "Mythic+",
+            name = "Deathstalker — High-key Mythic+",
+            heroTree = "Deathstalker",
+            patch = "12.1.5",
+            source = "Icy Veins / current Midnight Season 2 guidance",
+            importString = "CUQAAAAAAAAAAAAAAAAAAAAAAAgx2MAAAAAwsMGLTMbLjxMDjZmZmZGGbzYGbbzMzMzMjBjZ2GAAAAGMmFzyADYBsMMBmFMDzMAzYA",
+            note = "Recommended for higher keys when priority-target damage and sustained AoE matter. Trickster remains a viable burst-oriented alternative for weekly keys.",
+            alternative = {
+                name = "Trickster — Weekly Mythic+",
+                heroTree = "Trickster",
+                importString = "CUQA5HmDzx68KWyrW/8Y781L7Dgx2MAAAAAwsMGLTMbLjxMMjZmZmZGGbzYGbbzMzMzMjBjZ2GAAAAGMGwY2MMwAziWoFbYGwMDmxA",
+            },
+        },
     },
 
     defensives = {
