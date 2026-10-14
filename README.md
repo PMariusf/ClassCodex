@@ -98,3 +98,5 @@ The addon can be developed and reviewed without World of Warcraft installed. Run
 ## Important
 
 Class Codex is intended as a reference and learning addon. Recommended stats, talents and rotations are patch-specific guidance rather than a replacement for character-specific simulation.
+
+No packaged downloads are produced during development; GitHub remains the single source of truth until a tested release is ready.
