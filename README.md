@@ -26,6 +26,8 @@ The current working implementation now covers all three Rogue specializations:
 - Recommended build import codes with click-to-select fields
 - Ability-icon rows for Opener, Single Target and AoE priorities
 - Ability tooltips on rotation rows when the Retail spell API resolves the spell
+- Spec-aware resource and cooldown callouts on rotation pages
+- Visual row emphasis for cooldown, resource and maintenance actions
 - Talent rows with spell icons and ranks
 - Spell tooltip on talent hover when a spell ID is available
 - Scrollable content area for long pages
@@ -59,7 +61,8 @@ ClassCodex/
 │       └── Subtlety.lua
 └── UI/
     ├── MainFrame.lua
-    └── Pages.lua
+    ├── Pages.lua
+    └── Callouts.lua
 ```
 
 ## Install for testing
@@ -96,15 +99,17 @@ Recommended build information should be reviewed whenever Blizzard tuning or tal
 
 ## Rotation presentation
 
-Rotation entries can now carry a Retail spell name as metadata. Class Codex resolves the spell at runtime through `C_Spell.GetSpellInfo`, displays its icon, and provides a normal WoW spell tooltip on hover. If a spell cannot be resolved, the guide text still renders with a question-mark icon instead of failing.
+Rotation entries can carry a Retail spell name as metadata. Class Codex resolves the spell at runtime through `C_Spell.GetSpellInfo`, displays its icon, and provides a normal WoW spell tooltip on hover. If a spell cannot be resolved, the guide text still renders with a question-mark icon instead of failing.
+
+`UI/Callouts.lua` adds a compact spec-aware panel above Opener, Single Target and AoE pages. It summarizes the main Energy / Combo Point rule and the most important cooldown or burst window for the detected Rogue specialization. Rotation cards also receive visual border emphasis for cooldown/burst, resource and maintenance actions.
 
 Subtlety rotation notes were refreshed for the current 12.x design; removed abilities such as Symbols of Death are no longer referenced.
 
 ## Development plan
 
-1. Test all three Rogue specs, the active Talents / Hero Talents reader, exact build comparison and ability-icon rows in Retail.
+1. Test all three Rogue specs, the active Talents / Hero Talents reader, exact build comparison, ability rows and callouts in Retail.
 2. Improve talent sorting/grouping and add richer WoW-style UI components.
-3. Add cooldown/resource callouts and more compact visual rotation cards.
+3. Refine the rotation cards after the first in-game visual pass.
 4. Use Rogue as the template for the remaining classes and specs.
 5. Add optional additional content profiles such as Delves and alternative raid encounters.
 
